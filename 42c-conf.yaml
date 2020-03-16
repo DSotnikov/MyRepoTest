@@ -1,0 +1,23 @@
+audit:
+  # map filenames to IDs of APIs already in 42Crunch Platform
+  mapping:
+    foo/bar/petstore-v3.json: a193b82d-5833-47f8-81d2-cfc4fe175914
+
+  # define what files to check in discovery phase OpenAPI files
+  # exclude directories from the search
+  # disable the whole discovery phase by specifying 'discovery: false'  
+  discovery:
+    search:
+      - '**/*.json'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '!node_modules/**'
+
+  # specify more fail conditions to be checked in addition to the minimum score
+   fail_on:
+    # fail if the API does not have a valid OpenAPI definition
+    invalid_contract: true
+
+    # fail if any issues with the defined severity or higher are detected
+    # possible severity levels: critical, high, medium, low, info 
+    severity: medium
